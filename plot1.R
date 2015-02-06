@@ -1,0 +1,10 @@
+data<-read.table(file = "household_power_consumption.txt", header=TRUE,sep = ";", na.strings = "?",nrows=2075259)
+data[,1]<-as.Date(data$Date, format = "%d/%m/%Y")
+data_sub<-subset(data,data$Date=="2007-02-01"|data$Date=="2007-02-02")
+
+#data<-read.table(file = "household_power_consumption.txt", header=FALSE,sep = ";", na.strings = "?",nrows=2880,skip=66636)
+#with(dat, hist(data$Global_active_power ,main = "Global Active Power", xlab="Global Active Power (kilowatts)", ylab = "Frequency", col="red"))
+png("plot1.png",width = 480, height = 480)
+with(data_sub, hist(data_sub$Global_active_power ,main = "Global Active Power", xlab="Global Active Power (kilowatts)", ylab = "Frequency", col="red"))
+#with(data, hist(data[[3]] ,main = "Global Active Power", xlab="Global Active Power (kilowatts)", ylab = "Frequency", col="red"))
+dev.off()
